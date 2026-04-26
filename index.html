@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Learning Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F8F6F1;
+  --surface: #FFFFFF;
+  --surface2: #F2EFE8;
+  --border: rgba(60,52,40,0.12);
+  --border-strong: rgba(60,52,40,0.25);
+  --text: #1A1612;
+  --text-2: #5A5248;
+  --text-3: #9A9088;
+  --accent-blue: #1A5FAB;
+  --accent-blue-bg: #E8F0FB;
+  --accent-blue-light: #B8D0F5;
+  --accent-green: #1B6B3A;
+  --accent-green-bg: #E6F5EC;
+  --accent-green-light: #A8DFBE;
+  --accent-purple: #5B3B9E;
+  --accent-purple-bg: #EEE8FB;
+  --accent-purple-light: #C8B4EE;
+  --accent-amber: #8B5E00;
+  --accent-amber-bg: #FDF3DC;
+  --accent-amber-light: #F5D87A;
+  --accent-coral: #A63020;
+  --accent-coral-bg: #FCEAE7;
+  --accent-coral-light: #F5B5A8;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.05);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --nav-h: 64px;
+  --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"] {
+  --bg: #141210;
+  --surface: #1E1C19;
+  --surface2: #252320;
+  --border: rgba(255,255,255,0.10);
+  --border-strong: rgba(255,255,255,0.20);
+  --text: #F0EDE8;
+  --text-2: #A8A098;
+  --text-3: #68605A;
+  --accent-blue: #6AABF5;
+  --accent-blue-bg: #0D2240;
+  --accent-blue-light: #1A4070;
+  --accent-green: #60D090;
+  --accent-green-bg: #0A2818;
+  --accent-green-light: #155030;
+  --accent-purple: #B090F5;
+  --accent-purple-bg: #1E1040;
+  --accent-purple-light: #3C2070;
+  --accent-amber: #F5C840;
+  --accent-amber-bg: #2A1E00;
+  --accent-amber-light: #503800;
+  --accent-coral: #F5806A;
+  --accent-coral-bg: #2A0C08;
+  --accent-coral-light: #501808;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;transition:background var(--transition),color var(--transition)}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,textarea{font-family:inherit}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;backdrop-filter:blur(12px);transition:background var(--transition)}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-brand h1{font-family:var(--font-display);font-size:1.15rem;font-weight:600;letter-spacing:-0.02em;color:var(--text)}
+.nav-brand p{font-size:0.65rem;color:var(--text-3);letter-spacing:0.04em;text-transform:uppercase;font-weight:500}
+.nav-links{display:flex;gap:0.25rem;align-items:center}
+.nav-link{padding:0.4rem 0.85rem;border-radius:var(--radius-sm);font-size:0.82rem;font-weight:500;color:var(--text-2);transition:all var(--transition);cursor:pointer;border:1px solid transparent}
+.nav-link:hover{color:var(--text);background:var(--surface2)}
+.nav-link.active{color:var(--accent-blue);background:var(--accent-blue-bg);border-color:var(--accent-blue-light)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.theme-btn{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all var(--transition)}
+.theme-btn:hover{background:var(--border-strong)}
+.hamburger{display:none;flex-direction:column;gap:4px;width:36px;height:36px;border-radius:var(--radius-sm);background:var(--surface2);border:1px solid var(--border);align-items:center;justify-content:center}
+.hamburger span{width:16px;height:1.5px;background:var(--text);border-radius:2px;transition:all var(--transition)}
+
+/* MAIN */
+.main{margin-top:var(--nav-h);min-height:calc(100vh - var(--nav-h))}
+.page{display:none;animation:fadeIn 0.3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.hero{padding:5rem 2rem 4rem;max-width:900px;margin:0 auto;text-align:center}
+.hero h2{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;line-height:1.15;letter-spacing:-0.03em;color:var(--text);margin-bottom:1.25rem}
+.hero h2 em{font-style:italic;color:var(--accent-blue)}
+.hero p{font-size:1.05rem;color:var(--text-2);max-width:520px;margin:0 auto 2.5rem;line-height:1.7}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:var(--font-display);font-size:2rem;font-weight:600;color:var(--text)}
+.hero-stat .lbl{font-size:0.75rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em}
+.hero-actions{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:0.75rem 1.75rem;border-radius:var(--radius-md);background:var(--text);color:var(--bg);font-size:0.9rem;font-weight:600;transition:all var(--transition);border:1px solid transparent}
+.btn-primary:hover{opacity:0.88;transform:translateY(-1px)}
+.btn-secondary{padding:0.75rem 1.75rem;border-radius:var(--radius-md);background:var(--surface);color:var(--text);font-size:0.9rem;font-weight:500;border:1px solid var(--border-strong);transition:all var(--transition)}
+.btn-secondary:hover{background:var(--surface2);transform:translateY(-1px)}
+
+/* SECTION */
+.section{max-width:1100px;margin:0 auto;padding:2rem 2rem 4rem}
+.section-header{margin-bottom:2rem}
+.section-title{font-family:var(--font-display);font-size:1.9rem;font-weight:300;letter-spacing:-0.02em;color:var(--text);margin-bottom:0.4rem}
+.section-sub{font-size:0.9rem;color:var(--text-2)}
+.tag{display:inline-flex;align-items:center;gap:0.35rem;padding:0.2rem 0.65rem;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase}
+
+/* TENSE FILTERS */
+.tense-filters{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.filter-btn{padding:0.4rem 0.9rem;border-radius:20px;font-size:0.8rem;font-weight:500;color:var(--text-2);background:var(--surface);border:1px solid var(--border);transition:all var(--transition);cursor:pointer}
+.filter-btn:hover{border-color:var(--border-strong);color:var(--text)}
+.filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+/* TENSE CARDS */
+.tenses-grid{display:grid;gap:1rem}
+.tense-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:box-shadow var(--transition),border-color var(--transition)}
+.tense-card:hover{box-shadow:var(--shadow-md);border-color:var(--border-strong)}
+.tense-card-header{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;cursor:pointer;user-select:none}
+.tense-icon{width:40px;height:40px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;font-family:var(--font-mono);font-weight:500;font-size:0.7rem}
+.tense-card-info{flex:1}
+.tense-card-name{font-weight:600;font-size:0.95rem;color:var(--text);margin-bottom:0.15rem}
+.tense-card-signal{font-size:0.75rem;color:var(--text-3)}
+.tense-expand-btn{width:28px;height:28px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all var(--transition);flex-shrink:0}
+.tense-expand-btn svg{transition:transform var(--transition);color:var(--text-2)}
+.tense-card.expanded .tense-expand-btn svg{transform:rotate(180deg)}
+.tense-body{display:none;padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.tense-card.expanded .tense-body{display:block}
+
+/* TENSE BODY TABS */
+.tense-tabs{display:flex;gap:0;margin-bottom:1.25rem;border-bottom:1px solid var(--border);margin-top:1.25rem}
+.tense-tab{padding:0.5rem 1rem;font-size:0.82rem;font-weight:500;color:var(--text-3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all var(--transition)}
+.tense-tab.active{color:var(--accent-blue);border-bottom-color:var(--accent-blue)}
+.tense-tab-content{display:none}
+.tense-tab-content.active{display:block}
+
+.tense-explanation{font-size:0.9rem;color:var(--text-2);line-height:1.7;margin-bottom:1rem}
+.structure-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-md);padding:1rem 1.25rem;margin-bottom:1rem}
+.structure-label{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-3);margin-bottom:0.5rem}
+.structure-formula{font-family:var(--font-mono);font-size:0.85rem;color:var(--text)}
+.structure-formula span{color:var(--accent-blue);font-weight:500}
+.examples-list{display:flex;flex-direction:column;gap:0.5rem}
+.example-item{padding:0.65rem 0.9rem;background:var(--surface2);border-radius:var(--radius-md);font-size:0.87rem;color:var(--text);border-left:3px solid transparent;transition:all var(--transition)}
+.example-item.affirmative{border-left-color:var(--accent-green)}
+.example-item.negative{border-left-color:var(--accent-coral)}
+.example-item.interrogative{border-left-color:var(--accent-blue)}
+.example-label{font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;color:var(--text-3);margin-bottom:0.2rem}
+
+.signal-words{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem}
+.signal-chip{padding:0.25rem 0.65rem;border-radius:20px;font-size:0.75rem;font-weight:500;background:var(--accent-amber-bg);color:var(--accent-amber);border:1px solid var(--accent-amber-light)}
+
+.use-cases{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem}
+.use-case-item{display:flex;gap:0.5rem;align-items:flex-start;font-size:0.87rem;color:var(--text-2);line-height:1.5}
+.use-case-item::before{content:"•";color:var(--accent-blue);font-weight:700;flex-shrink:0;margin-top:0.05rem}
+
+/* PRACTICE */
+.practice-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.practice-title{font-size:0.85rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:0.5rem}
+.exercise-card{background:var(--accent-blue-bg);border:1px solid var(--accent-blue-light);border-radius:var(--radius-md);padding:1.1rem 1.25rem;margin-bottom:0.75rem}
+.exercise-question{font-size:0.9rem;font-weight:500;color:var(--text);margin-bottom:0.85rem;line-height:1.5}
+.exercise-options{display:flex;flex-direction:column;gap:0.4rem}
+.exercise-option{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.75rem;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:all var(--transition);font-size:0.85rem;color:var(--text)}
+.exercise-option:hover:not(.disabled){background:var(--surface2);border-color:var(--accent-blue-light)}
+.exercise-option.correct{background:var(--accent-green-bg);border-color:var(--accent-green-light);color:var(--accent-green)}
+.exercise-option.wrong{background:var(--accent-coral-bg);border-color:var(--accent-coral-light);color:var(--accent-coral)}
+.exercise-option.disabled{cursor:default}
+.exercise-option .option-letter{width:22px;height:22px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:600;flex-shrink:0}
+.exercise-feedback{margin-top:0.75rem;padding:0.6rem 0.85rem;border-radius:var(--radius-sm);font-size:0.82rem;line-height:1.5;display:none}
+.exercise-feedback.show{display:block}
+.exercise-feedback.correct-fb{background:var(--accent-green-bg);color:var(--accent-green);border:1px solid var(--accent-green-light)}
+.exercise-feedback.wrong-fb{background:var(--accent-coral-bg);color:var(--accent-coral);border:1px solid var(--accent-coral-light)}
+
+.fill-blank-input{background:transparent;border:none;border-bottom:2px solid var(--accent-blue);outline:none;font-family:var(--font-body);font-size:0.88rem;color:var(--text);width:120px;padding:0.1rem 0.25rem;transition:border-color var(--transition)}
+.fill-blank-input:focus{border-bottom-color:var(--accent-purple)}
+.fill-blank-input.correct{border-bottom-color:var(--accent-green);color:var(--accent-green)}
+.fill-blank-input.wrong{border-bottom-color:var(--accent-coral);color:var(--accent-coral)}
+.fill-check-btn{padding:0.4rem 0.9rem;border-radius:var(--radius-sm);background:var(--text);color:var(--bg);font-size:0.8rem;font-weight:500;transition:all var(--transition);margin-top:0.75rem;display:inline-flex}
+.fill-check-btn:hover{opacity:0.85}
+
+/* PROGRESS PAGE */
+.progress-overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+.progress-metric{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;text-align:center}
+.progress-metric .num{font-family:var(--font-display);font-size:2.2rem;font-weight:600;color:var(--text);line-height:1}
+.progress-metric .lbl{font-size:0.8rem;color:var(--text-3);margin-top:0.35rem;text-transform:uppercase;letter-spacing:0.04em}
+.progress-metric .bar{height:4px;background:var(--surface2);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-metric .bar-fill{height:100%;border-radius:2px;transition:width 1s ease;background:var(--accent-blue)}
+
+.tense-progress-list{display:flex;flex-direction:column;gap:0.6rem}
+.tense-progress-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:0.85rem 1.1rem;display:flex;align-items:center;gap:1rem}
+.tp-info{flex:1}
+.tp-name{font-size:0.88rem;font-weight:500;color:var(--text)}
+.tp-score{font-size:0.75rem;color:var(--text-3);margin-top:0.15rem}
+.tp-bar{height:6px;background:var(--surface2);border-radius:3px;margin-top:0.4rem;overflow:hidden}
+.tp-fill{height:100%;border-radius:3px;transition:width 0.8s ease}
+.tp-badge{font-size:0.75rem;font-weight:600;padding:0.2rem 0.5rem;border-radius:12px}
+.score-chart{display:flex;gap:4px;align-items:flex-end;height:80px;margin:1.5rem 0}
+.score-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.score-bar-el{border-radius:3px 3px 0 0;min-height:4px;transition:height 0.8s ease;width:100%}
+.score-bar-label{font-size:0.6rem;color:var(--text-3);text-align:center;word-break:break-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40px}
+
+
+/* NOTES PAGE */
+.notes-layout{display:grid;grid-template-columns:1fr 280px;gap:1.5rem;align-items:start}
+.notes-editor{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.notes-toolbar{display:flex;align-items:center;gap:0.5rem;padding:0.75rem 1rem;border-bottom:1px solid var(--border);background:var(--surface2)}
+.notes-toolbar-btn{padding:0.3rem 0.6rem;border-radius:var(--radius-sm);font-size:0.8rem;font-weight:500;color:var(--text-2);background:var(--surface);border:1px solid var(--border);transition:all var(--transition);cursor:pointer}
+.notes-toolbar-btn:hover{color:var(--text);border-color:var(--border-strong)}
+.note-title-input{width:100%;padding:1rem 1.25rem 0.5rem;font-size:1.1rem;font-weight:600;color:var(--text);background:transparent;border:none;outline:none;font-family:var(--font-display)}
+.note-title-input::placeholder{color:var(--text-3)}
+.note-textarea{width:100%;min-height:320px;padding:0.5rem 1.25rem 1.25rem;font-size:0.9rem;color:var(--text);background:transparent;border:none;outline:none;resize:vertical;line-height:1.75;font-family:var(--font-body)}
+.note-textarea::placeholder{color:var(--text-3)}
+.notes-footer{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.25rem;border-top:1px solid var(--border);background:var(--surface2)}
+.note-save-btn{padding:0.5rem 1.25rem;border-radius:var(--radius-sm);background:var(--text);color:var(--bg);font-size:0.82rem;font-weight:600;transition:all var(--transition)}
+.note-save-btn:hover{opacity:0.85}
+.note-clear-btn{padding:0.5rem 0.85rem;border-radius:var(--radius-sm);background:transparent;color:var(--text-3);font-size:0.82rem;border:1px solid var(--border);transition:all var(--transition)}
+.note-clear-btn:hover{color:var(--accent-coral);border-color:var(--accent-coral-light)}
+
+.notes-sidebar{}
+.saved-notes-list{display:flex;flex-direction:column;gap:0.5rem;margin-top:0.75rem}
+.saved-note-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:0.85rem 1rem;cursor:pointer;transition:all var(--transition)}
+.saved-note-item:hover{border-color:var(--accent-blue-light);background:var(--accent-blue-bg)}
+.sni-title{font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:0.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sni-preview{font-size:0.75rem;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sni-date{font-size:0.68rem;color:var(--text-3);margin-top:0.25rem}
+.sni-actions{display:flex;gap:0.3rem;margin-top:0.4rem}
+.sni-del{font-size:0.7rem;color:var(--accent-coral);cursor:pointer;padding:0.15rem 0.4rem;border-radius:4px;border:1px solid transparent;transition:all var(--transition)}
+.sni-del:hover{border-color:var(--accent-coral-light);background:var(--accent-coral-bg)}
+
+/* VOCAB PAGE */
+.vocab-search{width:100%;padding:0.75rem 1rem;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:0.9rem;outline:none;transition:border-color var(--transition);margin-bottom:1.5rem}
+.vocab-search:focus{border-color:var(--accent-blue-light)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.vocab-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;transition:all var(--transition)}
+.vocab-card:hover{box-shadow:var(--shadow-md);border-color:var(--border-strong)}
+.vocab-word{font-family:var(--font-display);font-size:1.35rem;font-weight:600;color:var(--text);margin-bottom:0.2rem}
+.vocab-pos{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;padding:0.15rem 0.5rem;border-radius:10px;display:inline-block;margin-bottom:0.5rem}
+.vocab-def{font-size:0.85rem;color:var(--text-2);line-height:1.6;margin-bottom:0.75rem}
+.vocab-example{font-size:0.82rem;color:var(--text-3);font-style:italic;border-left:2px solid var(--border-strong);padding-left:0.6rem}
+
+/* GRAMMAR PAGE */
+.grammar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.grammar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;transition:all var(--transition)}
+.grammar-card:hover{box-shadow:var(--shadow-md)}
+.grammar-card-icon{width:44px;height:44px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
+.grammar-card-title{font-weight:600;font-size:1rem;color:var(--text);margin-bottom:0.4rem}
+.grammar-card-desc{font-size:0.85rem;color:var(--text-2);line-height:1.6;margin-bottom:0.75rem}
+.grammar-rule{font-family:var(--font-mono);font-size:0.78rem;background:var(--surface2);padding:0.4rem 0.65rem;border-radius:var(--radius-sm);color:var(--text-2);margin-bottom:0.3rem}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--text);color:var(--bg);padding:0.75rem 1.25rem;border-radius:var(--radius-md);font-size:0.85rem;font-weight:500;z-index:999;transform:translateY(20px);opacity:0;transition:all var(--transition);pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{padding:0 1rem}
+  .nav-links{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);flex-direction:column;padding:1rem;gap:0.25rem}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .hero{padding:3rem 1rem 2.5rem}
+  .section{padding:1.5rem 1rem 3rem}
+  .notes-layout{grid-template-columns:1fr}
+  .score-bar-label{display:none}
+}
+</style>
+</head>
+<body data-theme="light">
+
+<nav class="nav">
+  <div class="nav-brand">
+    <h1>English Learning Hub</h1>
+    <p>Master Verb Tenses &amp; More</p>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <span class="nav-link active" data-page="home">Home</span>
+    <span class="nav-link" data-page="vocab">Vocabulary</span>
+    <span class="nav-link" data-page="grammar">Grammar</span>
+    <span class="nav-link" data-page="tenses">Verb Tenses</span>
+    <span class="nav-link" data-page="notes">Notes</span>
+    <span class="nav-link" data-page="progress">Progress</span>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <h2>Master English with<br><em>Confidence</em></h2>
+    <p>A complete platform for learning all 12 English verb tenses — with explanations, structured examples, interactive exercises, and progress tracking.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">12</div><div class="lbl">Verb Tenses</div></div>
+      <div class="hero-stat"><div class="num">60+</div><div class="lbl">Exercises</div></div>
+      <div class="hero-stat"><div class="num">200+</div><div class="lbl">Example Sentences</div></div>
+    </div>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="navigate('tenses')">Start Learning →</button>
+      <button class="btn-secondary" onclick="navigate('vocab')">Vocabulary</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">12 Tenses Covered</div>
+      <p class="section-sub">From Present Simple to Future Perfect — every tense with full examples</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.6rem">
+    </div>
+  </div>
+</div>
+
+<!-- VOCAB -->
+<div class="page" id="page-vocab">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Vocabulary</div>
+      <p class="section-sub">Key vocabulary with definitions and examples</p>
+    </div>
+    <input class="vocab-search" id="vocabSearch" placeholder="Search words..." oninput="filterVocab(this.value)">
+    <div class="vocab-grid" id="vocabGrid"></div>
+  </div>
+</div>
+
+<!-- GRAMMAR -->
+<div class="page" id="page-grammar">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Grammar Rules</div>
+      <p class="section-sub">Essential English grammar concepts</p>
+    </div>
+    <div class="grammar-grid" id="grammarGrid"></div>
+  </div>
+</div>
+
+<!-- TENSES -->
+<div class="page" id="page-tenses">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Verb Tenses</div>
+      <p class="section-sub">Complete guide to all 12 English verb tenses — tap any card to expand</p>
+    </div>
+    <div class="tense-filters" id="tenseFilters"></div>
+    <div class="tenses-grid" id="tensesGrid"></div>
+  </div>
+</div>
+
+
+<!-- NOTES -->
+<div class="page" id="page-notes">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">My Notes</div>
+      <p class="section-sub">Save personal notes about grammar rules, vocabulary, and more</p>
+    </div>
+    <div class="notes-layout">
+      <div class="notes-editor">
+        <div class="notes-toolbar">
+          <button class="notes-toolbar-btn" onclick="insertNoteText('• ')">• List</button>
+          <button class="notes-toolbar-btn" onclick="insertNoteText('\n---\n')">—</button>
+        </div>
+        <input class="note-title-input" id="noteTitleInput" placeholder="Note title..." maxlength="60">
+        <textarea class="note-textarea" id="noteTextarea" placeholder="Write your notes here...&#10;&#10;Tip: You can use this to remember grammar rules, new vocabulary, or anything about the lesson!"></textarea>
+        <div class="notes-footer">
+          <span style="font-size:0.78rem;color:var(--text-3)" id="noteCharCount">0 characters</span>
+          <div style="display:flex;gap:0.5rem">
+            <button class="note-clear-btn" onclick="clearNote()">Clear</button>
+            <button class="note-save-btn" onclick="saveNote()">Save Note</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes-sidebar">
+        <div style="font-size:0.82rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.05em">Saved Notes</div>
+        <div class="saved-notes-list" id="savedNotesList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="page" id="page-progress">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">My Progress</div>
+      <p class="section-sub">Track your learning journey across all tenses and quizzes</p>
+    </div>
+    <div class="progress-overview" id="progressOverview"></div>
+    <div>
+      <div style="font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.75rem">Tense Progress</div>
+      <div class="tense-progress-list" id="tenseProgressList"></div>
+    </div>
+    <div style="margin-top:2rem;text-align:center">
+      <button class="btn-secondary" onclick="resetProgress()" style="font-size:0.8rem;color:var(--accent-coral)">Reset All Progress</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// DATA MODEL (TypeScript interfaces represented as JS)
+// ============================================================
+
+const TENSES = [
+  {
+    id: 'present-simple',
+    name: 'Present Simple',
+    category: 'present',
+    color: 'blue',
+    abbrev: 'PS',
+    explanation: 'Used to describe habitual actions, facts, and states that are generally true or permanent. It is one of the most frequently used tenses in English.',
+    structure: {
+      affirmative: 'Subject + <span>base verb</span> (+s/es for he/she/it)',
+      negative: 'Subject + <span>do/does not</span> + base verb',
+      interrogative: '<span>Do/Does</span> + subject + base verb?'
+    },
+    examples: {
+      affirmative: ['She works at a hospital.', 'The sun rises in the east.', 'I drink coffee every morning.'],
+      negative: ["He doesn't like spicy food.", "They don't speak French."],
+      interrogative: ['Do you exercise regularly?', 'Does she live near here?']
+    },
+    useCases: ['Daily habits and routines', 'Scientific facts and general truths', 'Permanent situations', 'Scheduled events (timetables)', 'Instructions and directions'],
+    signals: ['always', 'usually', 'often', 'sometimes', 'never', 'every day', 'on Mondays'],
+    exercises: [
+      { type: 'mcq', q: 'She ___ to the gym three times a week.', options: ['go', 'goes', 'going', 'went'], answer: 1, explanation: 'With he/she/it in Present Simple, we add -s or -es to the verb.' },
+      { type: 'fill', q: 'The train ___ (leave) at 8:00 every morning.', answer: 'leaves', explanation: 'Scheduled events use Present Simple. Third person singular adds -s.' }
+    ]
+  },
+  {
+    id: 'present-continuous',
+    name: 'Present Continuous',
+    category: 'present',
+    color: 'green',
+    abbrev: 'PC',
+    explanation: 'Describes actions happening right now, at this moment, or temporary actions happening around the present time. Also used for future arrangements.',
+    structure: {
+      affirmative: 'Subject + <span>am/is/are</span> + verb-ing',
+      negative: 'Subject + <span>am/is/are not</span> + verb-ing',
+      interrogative: '<span>Am/Is/Are</span> + subject + verb-ing?'
+    },
+    examples: {
+      affirmative: ['She is reading a book right now.', 'They are playing football in the park.', 'I am learning English this year.'],
+      negative: ["He isn't watching TV at the moment.", "We aren't working today."],
+      interrogative: ['Are you listening to me?', 'Is she coming to the party?']
+    },
+    useCases: ['Actions happening right now', 'Temporary situations', 'Future arrangements (confirmed plans)', 'Annoying habits (with "always")', 'Changing or developing situations'],
+    signals: ['now', 'right now', 'at the moment', 'currently', 'today', 'this week', 'still'],
+    exercises: [
+      { type: 'mcq', q: 'Look! The baby ___ to walk.', options: ['learns', 'is learning', 'learned', 'learn'], answer: 1, explanation: '"Look!" signals that the action is happening right now — use Present Continuous.' },
+      { type: 'fill', q: 'I ___ (study) for my exam this week.', answer: 'am studying', explanation: 'A temporary action around now uses Present Continuous.' }
+    ]
+  },
+  {
+    id: 'present-perfect',
+    name: 'Present Perfect',
+    category: 'present',
+    color: 'purple',
+    abbrev: 'PP',
+    explanation: 'Connects the past to the present. Used for past actions with present relevance, life experiences, and recent events whose results are still visible now.',
+    structure: {
+      affirmative: 'Subject + <span>have/has</span> + past participle',
+      negative: 'Subject + <span>have/has not</span> + past participle',
+      interrogative: '<span>Have/Has</span> + subject + past participle?'
+    },
+    examples: {
+      affirmative: ["I've visited Japan twice.", 'She has just finished her homework.', "We've lived here for five years."],
+      negative: ["I haven't seen that film yet.", "He hasn't eaten anything today."],
+      interrogative: ['Have you ever been to London?', 'Has she called you back?']
+    },
+    useCases: ['Past experiences (unspecified time)', 'Actions with present results', 'Actions that started in the past and continue now', 'Very recent events', 'Achievements or changes'],
+    signals: ['ever', 'never', 'already', 'yet', 'just', 'recently', 'since', 'for', 'so far'],
+    exercises: [
+      { type: 'mcq', q: 'I ___ never ___ sushi before.', options: ['have / eaten', 'has / eaten', 'have / eat', 'did / eat'], answer: 0, explanation: '"Never" with an experience uses Present Perfect: have + past participle.' },
+      { type: 'fill', q: 'She ___ (just / finish) the report.', answer: 'has just finished', explanation: '"Just" signals a very recent completed action — use has/have + past participle.' }
+    ]
+  },
+  {
+    id: 'present-perfect-continuous',
+    name: 'Present Perfect Continuous',
+    category: 'present',
+    color: 'purple',
+    abbrev: 'PPC',
+    explanation: 'Emphasizes the duration or ongoing nature of an action that started in the past and continues to the present. It often explains a current situation.',
+    structure: {
+      affirmative: 'Subject + <span>have/has been</span> + verb-ing',
+      negative: 'Subject + <span>have/has not been</span> + verb-ing',
+      interrogative: '<span>Have/Has</span> + subject + <span>been</span> + verb-ing?'
+    },
+    examples: {
+      affirmative: ["I've been waiting for an hour.", 'She has been studying medicine for six years.', "They've been renovating the house all month."],
+      negative: ["He hasn't been sleeping well lately.", "We haven't been exercising enough."],
+      interrogative: ['How long have you been working here?', 'Have you been feeling okay?']
+    },
+    useCases: ['Continuous activity from past to present', 'Emphasizing duration', 'Explaining a present situation (tiredness, results)', 'Recently stopped actions with visible effects'],
+    signals: ['for', 'since', 'how long', 'all day', 'all morning', 'lately', 'recently'],
+    exercises: [
+      { type: 'mcq', q: 'She looks tired. She ___ all night.', options: ['works', 'is working', 'has been working', 'worked'], answer: 2, explanation: 'A continuous activity up to now (with visible result) uses Present Perfect Continuous.' },
+      { type: 'fill', q: 'How long ___ you ___ (learn) English?', answer: 'have / been learning', explanation: '"How long" + ongoing action = Present Perfect Continuous.' }
+    ]
+  },
+  {
+    id: 'past-simple',
+    name: 'Past Simple',
+    category: 'past',
+    color: 'amber',
+    abbrev: 'PaSi',
+    explanation: 'Describes completed actions, events, or states that happened at a specific time in the past. The action is finished and has no direct connection to the present.',
+    structure: {
+      affirmative: 'Subject + <span>past form of verb</span> (regular: +ed)',
+      negative: 'Subject + <span>did not</span> + base verb',
+      interrogative: '<span>Did</span> + subject + base verb?'
+    },
+    examples: {
+      affirmative: ['She visited Paris last summer.', 'We watched a great film yesterday.', 'He studied hard for the exam.'],
+      negative: ["I didn't enjoy the concert.", "They didn't arrive on time."],
+      interrogative: ['Did you call your mother?', 'Where did she go after school?']
+    },
+    useCases: ['Completed actions at a specific time', 'Sequence of past events', 'Past habits (no longer true)', 'Historical facts', 'Stories and narratives'],
+    signals: ['yesterday', 'last week/month/year', 'ago', 'in 2015', 'when', 'then', 'after that', 'finally'],
+    exercises: [
+      { type: 'mcq', q: 'He ___ the marathon in under four hours.', options: ['finish', 'finishes', 'finished', 'has finished'], answer: 2, explanation: 'A completed action in the past uses Past Simple (-ed for regular verbs).' },
+      { type: 'fill', q: 'She ___ (not / sleep) well last night.', answer: "didn't sleep", explanation: 'Negative Past Simple: did not + base verb.' }
+    ]
+  },
+  {
+    id: 'past-continuous',
+    name: 'Past Continuous',
+    category: 'past',
+    color: 'amber',
+    abbrev: 'PaCo',
+    explanation: 'Describes an action that was in progress at a specific moment in the past, or an ongoing action that was interrupted by another past event.',
+    structure: {
+      affirmative: 'Subject + <span>was/were</span> + verb-ing',
+      negative: 'Subject + <span>was/were not</span> + verb-ing',
+      interrogative: '<span>Was/Were</span> + subject + verb-ing?'
+    },
+    examples: {
+      affirmative: ['I was cooking dinner when you called.', 'They were playing chess all evening.', 'She was working late last night.'],
+      negative: ["He wasn't paying attention during the lecture.", "We weren't expecting that news."],
+      interrogative: ['Were you sleeping when I arrived?', 'Was she driving the red car?']
+    },
+    useCases: ['Actions in progress at a past moment', 'Interrupted past actions (with Past Simple)', 'Parallel past actions (while...)', 'Background descriptions in stories', 'Gradual changes in the past'],
+    signals: ['while', 'when', 'at that moment', 'at 8pm yesterday', 'all morning', 'as'],
+    exercises: [
+      { type: 'mcq', q: 'While I ___ a shower, the phone rang.', options: ['take', 'took', 'was taking', 'am taking'], answer: 2, explanation: '"While" introduces the ongoing background action — use Past Continuous.' },
+      { type: 'fill', q: 'They ___ (watch) a film when the power went out.', answer: 'were watching', explanation: 'An ongoing past action interrupted by another: were + verb-ing.' }
+    ]
+  },
+  {
+    id: 'past-perfect',
+    name: 'Past Perfect',
+    category: 'past',
+    color: 'coral',
+    abbrev: 'PaPe',
+    explanation: "The 'past of the past.' Used to show that one action was completed before another past action. It makes the sequence of events clear.",
+    structure: {
+      affirmative: 'Subject + <span>had</span> + past participle',
+      negative: 'Subject + <span>had not</span> + past participle',
+      interrogative: '<span>Had</span> + subject + past participle?'
+    },
+    examples: {
+      affirmative: ["She had already eaten when we arrived.", 'He had never seen snow before that winter.', 'By noon, they had finished all the work.'],
+      negative: ["I hadn't heard the news until she told me.", "We hadn't met before the conference."],
+      interrogative: ['Had you ever tried sushi before last night?', 'Had she called before you left?']
+    },
+    useCases: ['Action before another past action', 'Reported speech (backshifting)', 'Conditional sentences (3rd conditional)', 'Explaining past situations', '"Before/After/When" clauses with past events'],
+    signals: ['already', 'before', 'after', 'by the time', 'when', 'never', 'just'],
+    exercises: [
+      { type: 'mcq', q: 'By the time we got to the cinema, the film ___.', options: ['already started', 'had already started', 'has already started', 'already starts'], answer: 1, explanation: '"By the time" + past event = something completed BEFORE that moment: Past Perfect.' },
+      { type: 'fill', q: 'She realised she ___ (forget) her phone at home.', answer: 'had forgotten', explanation: 'The forgetting happened before the realising — Past Perfect: had + past participle.' }
+    ]
+  },
+  {
+    id: 'past-perfect-continuous',
+    name: 'Past Perfect Continuous',
+    category: 'past',
+    color: 'coral',
+    abbrev: 'PPC',
+    explanation: 'Emphasizes the duration of an action that was ongoing up to a certain point in the past. Often used to explain why something happened.',
+    structure: {
+      affirmative: 'Subject + <span>had been</span> + verb-ing',
+      negative: 'Subject + <span>had not been</span> + verb-ing',
+      interrogative: '<span>Had</span> + subject + <span>been</span> + verb-ing?'
+    },
+    examples: {
+      affirmative: ['He had been working for 12 hours when he collapsed.', "She'd been studying French for two years before she moved to Paris.", "They had been arguing all day."],
+      negative: ["I hadn't been sleeping well before the interview.", "She hadn't been feeling well for weeks."],
+      interrogative: ['Had you been waiting long before the bus came?', 'Had they been planning this for months?']
+    },
+    useCases: ['Duration of action before another past event', 'Explaining the cause of a past situation', 'Emphasizing continuity before a past moment'],
+    signals: ['for', 'since', 'how long', 'before', 'when', 'by the time'],
+    exercises: [
+      { type: 'mcq', q: 'She was exhausted because she ___ all day.', options: ['works', 'worked', 'had been working', 'has worked'], answer: 2, explanation: 'To explain a past feeling with a duration, use Past Perfect Continuous.' },
+      { type: 'fill', q: 'He ___ (drive) for six hours when he decided to stop.', answer: 'had been driving', explanation: 'Duration of action before a past event: had been + verb-ing.' }
+    ]
+  },
+  {
+    id: 'future-simple',
+    name: 'Future Simple (will)',
+    category: 'future',
+    color: 'green',
+    abbrev: 'FS',
+    explanation: "Used for spontaneous decisions, predictions, promises, and offers made at the moment of speaking. 'Will' is a modal verb and is followed by the base form of the verb.",
+    structure: {
+      affirmative: 'Subject + <span>will</span> + base verb',
+      negative: 'Subject + <span>will not (won\'t)</span> + base verb',
+      interrogative: '<span>Will</span> + subject + base verb?'
+    },
+    examples: {
+      affirmative: ["I'll call you tomorrow.", 'She will pass the exam — she studies so hard!', "We'll have flying cars in the future."],
+      negative: ["He won't be at the meeting today.", "I won't tell anyone your secret."],
+      interrogative: ['Will you help me with this?', 'Will it rain this afternoon?']
+    },
+    useCases: ['Spontaneous decisions', 'Predictions (based on opinion)', 'Promises and offers', 'Threats', 'Future facts'],
+    signals: ['tomorrow', 'next week', 'soon', 'in the future', 'I think', 'probably', 'I promise'],
+    exercises: [
+      { type: 'mcq', q: '"I\'m cold." — "I ___ close the window."', options: ["am closing", "close", "will close", "am going to close"], answer: 2, explanation: 'A spontaneous decision made at the moment of speaking uses "will".' },
+      { type: 'fill', q: 'I ___ (help) you carry those bags.', answer: "will help", explanation: 'An offer made right now uses will + base verb.' }
+    ]
+  },
+  {
+    id: 'going-to',
+    name: 'Going To (Future)',
+    category: 'future',
+    color: 'green',
+    abbrev: 'GoTo',
+    explanation: "Used for pre-planned intentions and predictions based on visible evidence or current circumstances. Unlike 'will', 'going to' involves a prior decision.",
+    structure: {
+      affirmative: 'Subject + <span>am/is/are going to</span> + base verb',
+      negative: 'Subject + <span>am/is/are not going to</span> + base verb',
+      interrogative: '<span>Am/Is/Are</span> + subject + <span>going to</span> + base verb?'
+    },
+    examples: {
+      affirmative: ["I'm going to visit my grandmother this weekend.", 'Look at those clouds — it\'s going to rain.', "We're going to buy a new car next month."],
+      negative: ["She isn't going to take that job.", "They're not going to make it on time."],
+      interrogative: ['Are you going to apply for the position?', 'Is he going to be there?']
+    },
+    useCases: ['Pre-planned intentions and decisions', 'Predictions based on evidence', 'Plans already made'],
+    signals: ['this weekend', 'next month', 'soon', 'look!', 'already decided', 'planning to'],
+    exercises: [
+      { type: 'mcq', q: 'Look! That vase ___ fall!', options: ['falls', 'will fall', 'is going to fall', 'fell'], answer: 2, explanation: 'A prediction based on visible evidence uses "going to".' },
+      { type: 'fill', q: 'We ___ (move) to a new house next spring — we already signed the contract.', answer: 'are going to move', explanation: 'A pre-planned decision: am/is/are going to + base verb.' }
+    ]
+  },
+  {
+    id: 'future-continuous',
+    name: 'Future Continuous',
+    category: 'future',
+    color: 'teal',
+    abbrev: 'FC',
+    explanation: 'Describes an action that will be in progress at a specific time in the future. Often used to describe future background activities or politely inquire about plans.',
+    structure: {
+      affirmative: 'Subject + <span>will be</span> + verb-ing',
+      negative: 'Subject + <span>will not be</span> + verb-ing',
+      interrogative: '<span>Will</span> + subject + <span>be</span> + verb-ing?'
+    },
+    examples: {
+      affirmative: ["At 9pm tonight, I'll be watching the game.", 'This time next week, she will be travelling across Europe.', 'They will be having dinner when we arrive.'],
+      negative: ["I won't be working this Saturday.", "She won't be attending the conference."],
+      interrogative: ['Will you be using the car this evening?', 'What will you be doing at midnight?']
+    },
+    useCases: ['Actions in progress at a future moment', 'Polite questions about plans', 'Parallel future actions', 'Predicting current activity at a future time'],
+    signals: ['at this time tomorrow', 'this time next week', 'at 8pm tonight', 'when you arrive', 'all day tomorrow'],
+    exercises: [
+      { type: 'mcq', q: 'Don\'t call me at noon — I ___ lunch with clients.', options: ['have', 'will have', 'will be having', 'am having'], answer: 2, explanation: 'An ongoing action at a specific future moment: will be + verb-ing.' },
+      { type: 'fill', q: 'This time tomorrow, we ___ (fly) over the Atlantic.', answer: 'will be flying', explanation: 'Action in progress at a future point: will be + verb-ing.' }
+    ]
+  },
+  {
+    id: 'future-perfect',
+    name: 'Future Perfect',
+    category: 'future',
+    color: 'teal',
+    abbrev: 'FP',
+    explanation: 'Describes an action that will be completed before a specific time or another event in the future. We look back from a future point to a completed action.',
+    structure: {
+      affirmative: 'Subject + <span>will have</span> + past participle',
+      negative: 'Subject + <span>will not have</span> + past participle',
+      interrogative: '<span>Will</span> + subject + <span>have</span> + past participle?'
+    },
+    examples: {
+      affirmative: ["By Friday, I'll have finished the report.", 'She will have graduated by the time her parents arrive.', 'By 2030, renewable energy will have replaced most fossil fuels.'],
+      negative: ["He won't have arrived by 6pm.", "They won't have completed the project by then."],
+      interrogative: ['Will you have read the book before the meeting?', 'Will she have left by the time we get there?']
+    },
+    useCases: ['Actions completed before a future time', 'Predictions about the future', '"By the time" clauses', 'Duration up to a future point'],
+    signals: ['by then', 'by next year', 'by the time', 'before', 'already (future)'],
+    exercises: [
+      { type: 'mcq', q: 'By midnight, they ___ all the food.', options: ['eat', 'will eat', 'will have eaten', 'will be eating'], answer: 2, explanation: '"By midnight" signals completion before a future point — use Future Perfect.' },
+      { type: 'fill', q: 'She ___ (save) enough money by December.', answer: 'will have saved', explanation: 'Completed before a future point: will have + past participle.' }
+    ]
+  }
+];
+
+const VOCAB_DATA = [
+  { word: 'Elaborate', pos: 'adjective', posColor: 'blue', def: 'Involving many carefully arranged parts; detailed and complicated.', example: 'She designed an elaborate wedding ceremony with dozens of unique elements.' },
+  { word: 'Infer', pos: 'verb', posColor: 'green', def: 'To conclude information from evidence and reasoning rather than from explicit statements.', example: 'From his tone, I could infer that he was not happy with the result.' },
+  { word: 'Ambiguous', pos: 'adjective', posColor: 'blue', def: 'Open to more than one interpretation; not having one obvious meaning.', example: 'The contract was ambiguous, so both parties disagreed on its terms.' },
+  { word: 'Perseverance', pos: 'noun', posColor: 'purple', def: 'Continued effort and determination despite difficulty or delay in achieving success.', example: 'Her perseverance in studying every day finally led to excellent exam results.' },
+  { word: 'Concise', pos: 'adjective', posColor: 'blue', def: 'Giving a lot of information clearly and in a few words; brief but comprehensive.', example: 'A good essay should be concise and avoid unnecessary repetition.' },
+  { word: 'Eloquent', pos: 'adjective', posColor: 'blue', def: 'Fluent or persuasive in speaking or writing; well-expressed.', example: 'The lawyer gave an eloquent argument that convinced the entire jury.' },
+  { word: 'Diligent', pos: 'adjective', posColor: 'blue', def: 'Having or showing care and conscientiousness in one\'s work or duties.', example: 'A diligent student reviews their notes every evening after class.' },
+  { word: 'Nuance', pos: 'noun', posColor: 'purple', def: 'A subtle difference in or shade of meaning, expression, or sound.', example: 'Understanding the nuances of English grammar takes years of practice.' },
+  { word: 'Subordinate', pos: 'adjective / noun', posColor: 'amber', def: 'Lower in rank or position; a clause that depends on a main clause.', example: 'A subordinate clause cannot stand alone as a complete sentence.' },
+  { word: 'Proficient', pos: 'adjective', posColor: 'blue', def: 'Competent or skilled in doing or using something.', example: 'She became proficient in English after living abroad for two years.' },
+  { word: 'Lexicon', pos: 'noun', posColor: 'purple', def: 'The vocabulary of a person, language, or branch of knowledge.', example: 'Medical students must learn a large technical lexicon.' },
+  { word: 'Coherent', pos: 'adjective', posColor: 'blue', def: 'Logical and consistent; forming a unified whole that is easy to understand.', example: 'His argument was coherent and well-structured, making it easy to follow.' },
+];
+
+const GRAMMAR_DATA = [
+  { icon: '📌', color: 'blue', title: 'Articles (a, an, the)', desc: 'Articles define whether a noun is specific or unspecific. Use "a/an" for indefinite nouns and "the" for specific ones.', rules: ['a + consonant sound: a cat, a house', 'an + vowel sound: an apple, an hour', 'the = specific/known noun'] },
+  { icon: '🔗', color: 'purple', title: 'Relative Clauses', desc: 'Clauses that give extra information about a noun. Defining clauses restrict meaning; non-defining add extra info.', rules: ['who/that = people', 'which/that = things', 'whose = possession', 'where = places'] },
+  { icon: '↕️', color: 'green', title: 'Conditionals', desc: 'If-clauses express hypothetical or real conditions. There are four main types, each with a different time and likelihood.', rules: ['Zero: If + present, present (fact)', '1st: If + present, will + inf (real)', '2nd: If + past, would (unreal present)', '3rd: If + past perfect, would have (unreal past)'] },
+  { icon: '🗣️', color: 'amber', title: 'Reported Speech', desc: 'Used to report what someone said without quoting them directly. Tenses usually shift back one step.', rules: ['"I am" → he said he was', '"I will" → she said she would', '"I have" → they said they had', 'Time shifts: today → that day'] },
+  { icon: '🔄', color: 'coral', title: 'Passive Voice', desc: 'The subject receives the action rather than performing it. Used when the agent is unknown, obvious, or unimportant.', rules: ['Subject + be + past participle', 'Present: is/are + PP', 'Past: was/were + PP', 'Perfect: has/have been + PP'] },
+  { icon: '📝', color: 'teal', title: 'Modal Verbs', desc: 'Auxiliary verbs that express ability, possibility, permission, or obligation. They are followed by the base infinitive.', rules: ['can/could (ability/possibility)', 'may/might (permission/probability)', 'must/have to (obligation)', 'should (advice/expectation)'] },
+];
+
+// ============================================================
+// STATE (Angular Services)
+// ============================================================
+const state = {
+  activePage: 'home',
+  activeFilter: 'all',
+  expandedTenses: new Set(),
+  notes: [],
+  progress: { tensesViewed: new Set(), tenseScores: {}, quizHistory: [] }
+};
+
+// ============================================================
+// PROGRESS SERVICE
+// ============================================================
+function saveState() {
+  try {
+    const save = {
+      tensesViewed: [...state.progress.tensesViewed],
+      tenseScores: state.progress.tenseScores,
+      quizHistory: state.progress.quizHistory,
+      notes: state.notes
+    };
+    localStorage.setItem('elh_progress', JSON.stringify(save));
+  } catch(e){}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem('elh_progress');
+    if(!raw) return;
+    const saved = JSON.parse(raw);
+    state.progress.tensesViewed = new Set(saved.tensesViewed||[]);
+    state.progress.tenseScores = saved.tenseScores||{};
+    state.progress.quizHistory = saved.quizHistory||[];
+    state.notes = saved.notes||[];
+  } catch(e){}
+}
+
+function resetProgress() {
+  if(!confirm('Reset all progress? This cannot be undone.')) return;
+  state.progress = { tensesViewed: new Set(), tenseScores: {}, quizHistory: [] };
+  state.notes = [];
+  saveState();
+  renderProgress();
+  showToast('Progress reset!');
+}
+
+// ============================================================
+// ROUTER (Angular Router)
+// ============================================================
+function navigate(page) {
+  state.activePage = page;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => {
+    l.classList.toggle('active', l.dataset.page === page);
+  });
+  const el = document.getElementById('page-' + page);
+  if(el) el.classList.add('active');
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo(0, 0);
+  if(page === 'progress') renderProgress();
+  if(page === 'notes') renderNotes();
+}
+
+// ============================================================
+// TENSES COMPONENT
+// ============================================================
+const colorMap = {
+  blue: { icon: 'var(--accent-blue-bg)', text: 'var(--accent-blue)', border: 'var(--accent-blue-light)' },
+  green: { icon: 'var(--accent-green-bg)', text: 'var(--accent-green)', border: 'var(--accent-green-light)' },
+  purple: { icon: 'var(--accent-purple-bg)', text: 'var(--accent-purple)', border: 'var(--accent-purple-light)' },
+  amber: { icon: 'var(--accent-amber-bg)', text: 'var(--accent-amber)', border: 'var(--accent-amber-light)' },
+  coral: { icon: 'var(--accent-coral-bg)', text: 'var(--accent-coral)', border: 'var(--accent-coral-light)' },
+  teal: { icon: 'var(--accent-blue-bg)', text: 'var(--accent-blue)', border: 'var(--accent-blue-light)' },
+};
+
+function renderTenseFilters() {
+  const cats = [
+    { id: 'all', label: 'All Tenses' },
+    { id: 'present', label: 'Present' },
+    { id: 'past', label: 'Past' },
+    { id: 'future', label: 'Future' },
+  ];
+  const el = document.getElementById('tenseFilters');
+  el.innerHTML = cats.map(c =>
+    `<button class="filter-btn ${state.activeFilter===c.id?'active':''}" onclick="setFilter('${c.id}')">${c.label}</button>`
+  ).join('');
+}
+
+function setFilter(cat) {
+  state.activeFilter = cat;
+  renderTenseFilters();
+  renderTenses();
+}
+
+function renderTenses() {
+  const grid = document.getElementById('tensesGrid');
+  const filtered = state.activeFilter === 'all' ? TENSES : TENSES.filter(t => t.category === state.activeFilter);
+  grid.innerHTML = filtered.map(t => renderTenseCard(t)).join('');
+}
+
+function renderTenseCard(t) {
+  const c = colorMap[t.color] || colorMap.blue;
+  const expanded = state.expandedTenses.has(t.id);
+  return `
+<div class="tense-card ${expanded?'expanded':''}" id="card-${t.id}">
+  <div class="tense-card-header" onclick="toggleTense('${t.id}')">
+    <div class="tense-icon" style="background:${c.icon};color:${c.text}">${t.abbrev}</div>
+    <div class="tense-card-info">
+      <div class="tense-card-name">${t.name}</div>
+      <div class="tense-card-signal">Signals: ${t.signals.slice(0,3).join(', ')}...</div>
+    </div>
+    <div class="tense-expand-btn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2,5 7,10 12,5"/></svg>
+    </div>
+  </div>
+  <div class="tense-body" id="body-${t.id}">
+    <div class="tense-tabs">
+      <div class="tense-tab active" data-tense="${t.id}" data-tab="explain" onclick="switchTab('${t.id}','explain',this)">Explanation</div>
+      <div class="tense-tab" data-tense="${t.id}" data-tab="examples" onclick="switchTab('${t.id}','examples',this)">Examples</div>
+      <div class="tense-tab" data-tense="${t.id}" data-tab="practice" onclick="switchTab('${t.id}','practice',this)">Practice</div>
+    </div>
+    <!-- Explanation Tab -->
+    <div class="tense-tab-content active" id="tab-${t.id}-explain">
+      <p class="tense-explanation">${t.explanation}</p>
+      <div class="structure-box">
+        <div class="structure-label">Affirmative</div>
+        <div class="structure-formula">${t.structure.affirmative}</div>
+      </div>
+      <div class="structure-box">
+        <div class="structure-label">Negative</div>
+        <div class="structure-formula">${t.structure.negative}</div>
+      </div>
+      <div class="structure-box">
+        <div class="structure-label">Interrogative</div>
+        <div class="structure-formula">${t.structure.interrogative}</div>
+      </div>
+      <div style="margin-top:1rem">
+        <div class="structure-label" style="margin-bottom:0.5rem">Common Uses</div>
+        <ul class="use-cases">${t.useCases.map(u=>`<li class="use-case-item">${u}</li>`).join('')}</ul>
+      </div>
+      <div style="margin-top:0.75rem">
+        <div class="structure-label" style="margin-bottom:0.4rem">Signal Words</div>
+        <div class="signal-words">${t.signals.map(s=>`<span class="signal-chip">${s}</span>`).join('')}</div>
+      </div>
+    </div>
+    <!-- Examples Tab -->
+    <div class="tense-tab-content" id="tab-${t.id}-examples">
+      <div class="structure-label" style="margin-bottom:0.5rem;margin-top:0.25rem">Affirmative</div>
+      <div class="examples-list">${t.examples.affirmative.map(e=>`<div class="example-item affirmative">${e}</div>`).join('')}</div>
+      <div class="structure-label" style="margin-bottom:0.5rem;margin-top:1rem">Negative</div>
+      <div class="examples-list">${t.examples.negative.map(e=>`<div class="example-item negative">${e}</div>`).join('')}</div>
+      <div class="structure-label" style="margin-bottom:0.5rem;margin-top:1rem">Interrogative</div>
+      <div class="examples-list">${t.examples.interrogative.map(e=>`<div class="example-item interrogative">${e}</div>`).join('')}</div>
+    </div>
+    <!-- Practice Tab -->
+    <div class="tense-tab-content" id="tab-${t.id}-practice">
+      ${renderPracticeExercises(t)}
+    </div>
+  </div>
+</div>`;
+}
+
+function renderPracticeExercises(t) {
+  return t.exercises.map((ex, i) => {
+    const exId = `ex-${t.id}-${i}`;
+    if(ex.type === 'mcq') {
+      return `
+<div class="exercise-card" id="${exId}">
+  <div class="exercise-question">${ex.q}</div>
+  <div class="exercise-options">
+    ${ex.options.map((opt, j) => `
+    <button class="exercise-option" id="${exId}-opt-${j}" onclick="checkMCQ('${exId}',${j},${ex.answer},'${escapeJs(ex.explanation)}')">
+      <span class="option-letter">${'ABCD'[j]}</span>${opt}
+    </button>`).join('')}
+  </div>
+  <div class="exercise-feedback" id="${exId}-fb"></div>
+</div>`;
+    } else {
+      return `
+<div class="exercise-card" id="${exId}" style="background:var(--accent-purple-bg);border-color:var(--accent-purple-light)">
+  <div class="exercise-question">${ex.q.replace('___', `<input class="fill-blank-input" id="${exId}-input" placeholder="your answer">`)}</div>
+  <button class="fill-check-btn" onclick="checkFill('${exId}','${escapeJs(ex.answer)}','${escapeJs(ex.explanation)}')">Check Answer</button>
+  <div class="exercise-feedback" id="${exId}-fb"></div>
+</div>`;
+    }
+  }).join('');
+}
+
+function escapeJs(s) { return s.replace(/'/g,"&#39;").replace(/\n/g,''); }
+
+function toggleTense(id) {
+  if(state.expandedTenses.has(id)) {
+    state.expandedTenses.delete(id);
+  } else {
+    state.expandedTenses.add(id);
+    state.progress.tensesViewed.add(id);
+    saveState();
+  }
+  const card = document.getElementById('card-' + id);
+  const body = document.getElementById('body-' + id);
+  if(card.classList.contains('expanded')) {
+    card.classList.remove('expanded');
+    body.style.display = 'none';
+  } else {
+    card.classList.add('expanded');
+    body.style.display = 'block';
+  }
+}
+
+function switchTab(tenseId, tabId, el) {
+  document.querySelectorAll(`[data-tense="${tenseId}"]`).forEach(t => t.classList.remove('active'));
+  const contents = document.querySelectorAll(`[id^="tab-${tenseId}-"]`);
+  contents.forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const target = document.getElementById(`tab-${tenseId}-${tabId}`);
+  if(target) target.classList.add('active');
+}
+
+function checkMCQ(exId, chosen, correct, explanation) {
+  const opts = document.querySelectorAll(`#${exId} .exercise-option`);
+  opts.forEach((o, i) => {
+    o.classList.add('disabled');
+    if(i === correct) o.classList.add('correct');
+    else if(i === chosen && chosen !== correct) o.classList.add('wrong');
+  });
+  const fb = document.getElementById(exId + '-fb');
+  const isCorrect = chosen === correct;
+  fb.className = `exercise-feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = `${isCorrect ? '✓ Correct!' : '✗ Incorrect.'} ${explanation}`;
+}
+
+function checkFill(exId, answer, explanation) {
+  const input = document.getElementById(exId + '-input');
+  if(!input) return;
+  const val = input.value.trim().toLowerCase();
+  const ans = answer.toLowerCase();
+  const isCorrect = val === ans;
+  input.className = `fill-blank-input ${isCorrect ? 'correct' : 'wrong'}`;
+  input.disabled = true;
+  const fb = document.getElementById(exId + '-fb');
+  fb.className = `exercise-feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect ? `✓ Correct! "${answer}" is right.` : `✗ The correct answer is: <strong>${answer}</strong>. ${explanation}`;
+  document.querySelector(`#${exId} .fill-check-btn`).disabled = true;
+}
+
+// ============================================================
+// VOCABULARY COMPONENT
+// ============================================================
+function renderVocab(filter='') {
+  const grid = document.getElementById('vocabGrid');
+  const filtered = filter ? VOCAB_DATA.filter(v => v.word.toLowerCase().includes(filter.toLowerCase()) || v.def.toLowerCase().includes(filter.toLowerCase())) : VOCAB_DATA;
+  const posColors = { blue: 'var(--accent-blue-bg);color:var(--accent-blue)', green: 'var(--accent-green-bg);color:var(--accent-green)', purple: 'var(--accent-purple-bg);color:var(--accent-purple)', amber: 'var(--accent-amber-bg);color:var(--accent-amber)' };
+  grid.innerHTML = filtered.map(v => `
+<div class="vocab-card">
+  <div class="vocab-word">${v.word}</div>
+  <span class="vocab-pos" style="background:${posColors[v.posColor]||posColors.blue}">${v.pos}</span>
+  <div class="vocab-def">${v.def}</div>
+  <div class="vocab-example">"${v.example}"</div>
+</div>`).join('') || '<p style="color:var(--text-3);grid-column:1/-1;text-align:center;padding:2rem">No results found.</p>';
+}
+
+function filterVocab(val) { renderVocab(val); }
+
+// ============================================================
+// GRAMMAR COMPONENT
+// ============================================================
+function renderGrammar() {
+  const grid = document.getElementById('grammarGrid');
+  const col = { blue: 'var(--accent-blue-bg)', purple: 'var(--accent-purple-bg)', green: 'var(--accent-green-bg)', amber: 'var(--accent-amber-bg)', coral: 'var(--accent-coral-bg)', teal: 'var(--accent-blue-bg)' };
+  grid.innerHTML = GRAMMAR_DATA.map(g => `
+<div class="grammar-card">
+  <div class="grammar-card-icon" style="background:${col[g.color]||col.blue}">${g.icon}</div>
+  <div class="grammar-card-title">${g.title}</div>
+  <div class="grammar-card-desc">${g.desc}</div>
+  ${g.rules.map(r => `<div class="grammar-rule">${r}</div>`).join('')}
+</div>`).join('');
+}
+
+// ============================================================
+// NOTES COMPONENT
+// ============================================================
+document.addEventListener('input', function(e) {
+  if(e.target.id === 'noteTextarea') {
+    document.getElementById('noteCharCount').textContent = e.target.value.length + ' characters';
+  }
+});
+
+function insertNoteText(text) {
+  const ta = document.getElementById('noteTextarea');
+  const start = ta.selectionStart;
+  ta.value = ta.value.slice(0, start) + text + ta.value.slice(ta.selectionEnd);
+  ta.focus();
+  ta.selectionStart = ta.selectionEnd = start + text.length;
+}
+
+function saveNote() {
+  const title = document.getElementById('noteTitleInput').value.trim();
+  const body = document.getElementById('noteTextarea').value.trim();
+  if(!body) { showToast('Please write something first.'); return; }
+  state.notes.unshift({ id: Date.now(), title: title || 'Untitled Note', body, date: Date.now() });
+  saveState();
+  renderNotes();
+  showToast('Note saved!');
+}
+
+function clearNote() {
+  document.getElementById('noteTitleInput').value = '';
+  document.getElementById('noteTextarea').value = '';
+  document.getElementById('noteCharCount').textContent = '0 characters';
+}
+
+function loadNote(id) {
+  const note = state.notes.find(n => n.id === id);
+  if(!note) return;
+  document.getElementById('noteTitleInput').value = note.title;
+  document.getElementById('noteTextarea').value = note.body;
+  document.getElementById('noteCharCount').textContent = note.body.length + ' characters';
+}
+
+function deleteNote(id) {
+  state.notes = state.notes.filter(n => n.id !== id);
+  saveState();
+  renderNotes();
+  showToast('Note deleted.');
+}
+
+function renderNotes() {
+  const list = document.getElementById('savedNotesList');
+  if(!state.notes.length) {
+    list.innerHTML = '<p style="font-size:0.8rem;color:var(--text-3);padding:0.5rem 0">No saved notes yet.</p>';
+    return;
+  }
+  list.innerHTML = state.notes.map(n => {
+    const d = new Date(n.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return `<div class="saved-note-item" onclick="loadNote(${n.id})">
+  <div class="sni-title">${n.title}</div>
+  <div class="sni-preview">${n.body.substring(0,50)}${n.body.length>50?'...':''}</div>
+  <div class="sni-date">${d}</div>
+  <div class="sni-actions"><span class="sni-del" onclick="event.stopPropagation();deleteNote(${n.id})">Delete</span></div>
+</div>`;
+  }).join('');
+}
+
+// ============================================================
+// PROGRESS COMPONENT
+// ============================================================
+function renderProgress() {
+  const viewed = state.progress.tensesViewed.size;
+  const total = TENSES.length;
+
+  document.getElementById('progressOverview').innerHTML = `
+<div class="progress-metric">
+  <div class="num">${viewed}/${total}</div>
+  <div class="lbl">Tenses Studied</div>
+  <div class="bar"><div class="bar-fill" style="width:${Math.round(viewed/total*100)}%"></div></div>
+</div>
+<div class="progress-metric">
+  <div class="num">${Math.round(viewed/total*100)}%</div>
+  <div class="lbl">Completion</div>
+  <div class="bar"><div class="bar-fill" style="width:${Math.round(viewed/total*100)}%;background:var(--accent-green)"></div></div>
+</div>`;
+
+  // Tense progress
+  const tl = document.getElementById('tenseProgressList');
+  tl.innerHTML = TENSES.map(t => {
+    const viewed = state.progress.tensesViewed.has(t.id);
+    const c = colorMap[t.color] || colorMap.blue;
+    return `<div class="tense-progress-item">
+  <div class="tense-icon" style="background:${c.icon};color:${c.text};width:32px;height:32px;font-size:0.6rem;border-radius:6px;flex-shrink:0">${t.abbrev}</div>
+  <div class="tp-info">
+    <div class="tp-name">${t.name}</div>
+    <div class="tp-score">${viewed ? 'Studied' : 'Not studied yet'}</div>
+    <div class="tp-bar"><div class="tp-fill" style="width:${viewed?100:0}%;background:${c.text}"></div></div>
+  </div>
+  <span class="tp-badge" style="background:${viewed?c.icon:'var(--surface2)'};color:${viewed?c.text:'var(--text-3)'}">
+    ${viewed ? '✓' : '—'}
+  </span>
+</div>`;
+  }).join('');
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ============================================================
+// THEME
+// ============================================================
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const dark = document.body.dataset.theme === 'dark';
+  document.body.dataset.theme = dark ? 'light' : 'dark';
+  document.getElementById('themeBtn').textContent = dark ? '🌙' : '☀️';
+  localStorage.setItem('elh_theme', document.body.dataset.theme);
+});
+
+// ============================================================
+// NAV
+// ============================================================
+document.querySelectorAll('.nav-link').forEach(l => {
+  l.addEventListener('click', () => navigate(l.dataset.page));
+});
+
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// ============================================================
+// HOME tense chips
+// ============================================================
+function renderHomeTenseChips() {
+  const cats = { present: 'blue', past: 'amber', future: 'green' };
+  const container = document.querySelector('#page-home .section > div:last-child');
+  if(!container) return;
+  container.innerHTML = TENSES.map(t => {
+    const col = cats[t.category];
+    const c = colorMap[col] || colorMap.blue;
+    return `<div style="padding:0.65rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);cursor:pointer;transition:all var(--transition)" 
+      onmouseover="this.style.borderColor='${c.text}';this.style.background='${c.icon}'" 
+      onmouseout="this.style.borderColor='';this.style.background='var(--surface)'" 
+      onclick="navigate('tenses')">
+      <span style="font-family:var(--font-mono);font-size:0.65rem;font-weight:600;background:${c.icon};color:${c.text};padding:0.1rem 0.4rem;border-radius:4px;margin-right:0.4rem">${t.abbrev}</span>
+      <span style="font-size:0.82rem;font-weight:500;color:var(--text)">${t.name}</span>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  const savedTheme = localStorage.getItem('elh_theme');
+  if(savedTheme) {
+    document.body.dataset.theme = savedTheme;
+    document.getElementById('themeBtn').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  }
+  loadState();
+  renderTenseFilters();
+  renderTenses();
+  renderVocab();
+  renderGrammar();
+  renderNotes();
+  renderHomeTenseChips();
+}
+
+init();
+</script>
+</body>
+</html>
