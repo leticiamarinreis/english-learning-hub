@@ -1,6 +1,6 @@
 # 📚 English Learning Hub
 
-> A complete and interactive platform to master English verb tenses — with explanations, examples, exercises, notes, and progress tracking.
+> A complete and interactive platform to master English verb tenses — with explanations, examples, notes, and progress tracking.
 
 🌐 **Live Demo:** [https://leticiamarinreis.github.io/english-learning-hub](https://seu-usuario.github.io/english-learning-hub)
 
@@ -41,7 +41,6 @@ Each tense card includes:
 - Example sentences
 - Common use cases
 - Signal words
-- Practice exercises (multiple-choice and fill-in-the-blank)
 
 ---
 
