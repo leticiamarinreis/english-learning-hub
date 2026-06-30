@@ -2,7 +2,7 @@
 
 > A complete and interactive platform to master English verb tenses — with explanations, exercises, examples, notes, and progress tracking.
 
-🌐 **Live Demo:** [https://leticiamarinreis.github.io/english-learning-hub](https://seu-usuario.github.io/english-learning-hub)
+🌐 **Live Demo:** [https://leticiamarinreis.github.io/english-learning-hub](https://leticiamarinreis.github.io/english-learning-hub/)
 
 ---
 
